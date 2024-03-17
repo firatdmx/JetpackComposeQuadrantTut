@@ -7,7 +7,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,63 +46,36 @@ class MainActivity : ComponentActivity() {
 fun Quadrant(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
         ) {
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.5f)) {
-                Column(
-                    modifier
-                        .fillMaxWidth(0.5f)
-                        .fillMaxHeight()
-                        .background(color = Color(0xFFEADDFF))
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Text(text = stringResource(id = R.string.title1), fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
-                    Text(text = stringResource(id = R.string.text1), textAlign = TextAlign.Justify)
-                }
-                Column(
-                    modifier
-                        .fillMaxSize()
-                        .background(color = Color(0xFFD0BCFF))
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = stringResource(id = R.string.title2), fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
-                    Text(text = stringResource(id = R.string.text2), textAlign = TextAlign.Justify)
-                }
+            Row(modifier.weight(1f)) {
+                InfoCard(title = stringResource(id = R.string.title1), textBody = stringResource(id = R.string.text1) , bgColor = Color(0xFFEADDFF),modifier.weight(1f))
+                InfoCard(title = stringResource(id = R.string.title2), textBody = stringResource(id = R.string.text2) , bgColor = Color(0xFFD0BCFF),modifier.weight(1f))
             }
-            Row(modifier.fillMaxWidth()) {
-                Column(
-                    modifier
-                        .fillMaxWidth(0.5f)
-                        .fillMaxHeight()
-                        .background(color = Color(0xFFB69DF8))
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = stringResource(id = R.string.title3), fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
-                    Text(text = stringResource(id = R.string.text3), textAlign = TextAlign.Justify)
-                }
-                Column(
-                    modifier
-                        .fillMaxSize()
-                        .background(color = Color(0xFFF6EDFF))
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = stringResource(id = R.string.title4), fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
-                    Text(text = stringResource(id = R.string.text4), textAlign = TextAlign.Justify)
-                }
+            Row(modifier.weight(1f)) {
+                InfoCard(title = stringResource(id = R.string.title3), textBody = stringResource(id = R.string.text3) , bgColor = Color(0xFFB69DF8),modifier.weight(1f))
+                InfoCard(title = stringResource(id = R.string.title4), textBody = stringResource(id = R.string.text4) , bgColor = Color(0xFFF6EDFF),modifier.weight(1f))
             }
         }
 }
+
+
+@Composable
+fun InfoCard(title: String, textBody:String,bgColor: Color, modifier: Modifier = Modifier) {
+    Column(
+        modifier
+            .fillMaxSize()
+            .background(color = bgColor)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = title, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 16.dp))
+        Text(text = textBody, textAlign = TextAlign.Justify)
+    }
+}
+
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
